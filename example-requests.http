@@ -1,0 +1,21 @@
+### GET airplanes
+GET http://localhost:8080/airplanes
+
+### GET all flights
+GET http://localhost:8080/flights
+
+### GET all flights by status
+GET http://localhost:8080/flights?status=BOARDING
+
+### GET all flights by airport code
+GET http://localhost:8080/flights?airportCode=MXP
+
+### GET all flights by airplane code
+GET http://localhost:8080/flights?airplaneCode=B737
+
+### POST add new flight
+POST http://localhost:8080/flights
+Content-Type: application/json
+
+< ./src/test/resources/newFlightRequestBody.json
+

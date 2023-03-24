@@ -1,0 +1,210 @@
+openapi: 3.0.3
+info:
+  version: 1.0.0
+  title: Danfoss Flight Manager
+
+tags:
+  - name: airplanes
+    description: airplane endpoints
+  - name: flights
+    description: flight endpoints
+  - name: airports
+    description: airport endpoints
+
+paths:
+  /airplanes:
+    get:
+      tags:
+        - airplanes
+      description: Returns all airplanes
+      operationId: getAirplanes
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/AirplaneDto'
+    post:
+      tags:
+        - airplanes
+      description: Add new airplane
+      operationId: addPlane
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AirplaneDto'
+      responses:
+        "201":
+          description: OK
+  /airplanes/{id}:
+    put:
+      tags:
+        - airplanes
+      description: Update airplane by id
+      operationId: updateAirplaneById
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AirplaneDto'
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: airplane id
+          schema:
+            type: string
+          example: CH1234
+      responses:
+        "204":
+          description: OK
+    delete:
+      tags:
+        - airplanes
+      description: delete airplane by id
+      operationId: deleteAirplaneById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: airplane id
+          schema:
+            type: string
+          example: IT1234
+      responses:
+        "200":
+          description: OK
+
+  /flights:
+    get:
+      tags:
+        - flights
+      description: returns list with all flights
+      operationId: getAllFlights
+      parameters:
+        - name: status
+          in: query
+          required: false
+          description: filter all flights by status
+          schema:
+            type: string
+          example: SCHEDULED
+        - name: airportCode
+          in: query
+          required: false
+          description: filter all flights by airport code
+          example: ZRH
+          schema:
+            type: string
+        - name: airplaneCode
+          in: query
+          required: false
+          description: filter all flights by airplane code
+          example: B737
+          schema:
+            type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                items:
+                  $ref: '#/components/schemas/FlightDto'
+    post:
+      tags:
+        - flights
+      description: add new flight
+      operationId: addNewFlight
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/NewFlightDto'
+      responses:
+        "201":
+          description: Created
+
+
+
+components:
+  schemas:
+    AirportDto:
+      type: object
+      properties:
+        code:
+          type: string
+          nullable: false
+        name:
+          type: string
+          nullable: false
+        city:
+          type: string
+          nullable: false
+        nation:
+          type: string
+          nullable: false
+
+    FlightDto:
+      type: object
+      properties:
+        number:
+          type: string
+          nullable: false
+        departure:
+          type: string
+          format: date-time
+          nullable: false
+        arrival:
+          type: string
+          format: date-time
+          nullable: false
+        duration:
+          type: string
+          format: duration
+          nullable: false
+        status:
+          type: string
+          nullable: false
+        airport:
+            $ref: '#/components/schemas/AirportDto'
+        airplane:
+            $ref: '#/components/schemas/AirplaneDto'
+
+    AirplaneDto:
+      properties:
+        id:
+          type: number
+          nullable: false
+        code:
+          type: string
+          nullable: false
+        type:
+          type: string
+          nullable: false
+        capacity:
+          type: string
+          nullable: false
+
+    NewFlightDto:
+      properties:
+        number:
+          type: string
+          nullable: false
+        departure:
+          type: string
+          format: date-time
+          nullable: false
+        arrival:
+          type: string
+          format: date-time
+          nullable: false
+        airportCode:
+          type: string
+          nullable: false
+        airplaneCode:
+          type: string
+          nullable: false

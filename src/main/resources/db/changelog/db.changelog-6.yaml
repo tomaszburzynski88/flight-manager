@@ -1,0 +1,82 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+  - changeSet:
+      id: 6
+      author: tburzynski
+      changes:
+        - insert:
+            tableName: flight
+            columns:
+              - column:
+                  name: number
+                  value: 'LX1234'
+              - column:
+                  name: departure
+                  value: '2023-03-23 07:35'
+              - column:
+                  name: arrival
+                  value: '2023-03-23 09:40'
+              - column:
+                  name: duration
+                  value: '02:05:00'
+              - column:
+                  name: status
+                  value: 'DEPARTED'
+              - column:
+                  name: airport_id
+                  valueComputed: (SELECT ID FROM airport where code = 'ZRH')
+              - column:
+                  name: airplane_id
+                  valueComputed: (SELECT ID FROM airplane where code = 'B737')
+
+        - insert:
+            tableName: flight
+            columns:
+              - column:
+                  name: number
+                  value: 'LO1234'
+              - column:
+                  name: departure
+                  value: '2023-03-23 16:50'
+              - column:
+                  name: arrival
+                  value: '2023-03-23 19:05'
+              - column:
+                  name: duration
+                  value: '02:15:00'
+              - column:
+                  name: status
+                  value: 'SCHEDULED'
+              - column:
+                  name: airport_id
+                  valueComputed: (SELECT ID FROM airport where code = 'MXP')
+              - column:
+                  name: airplane_id
+                  valueComputed: (SELECT ID FROM airplane where code = 'A320')
+
+        - insert:
+            tableName: flight
+            columns:
+              - column:
+                  name: number
+                  value: 'SK1234'
+              - column:
+                  name: departure
+                  value: '2023-03-23 18:30'
+              - column:
+                  name: arrival
+                  value: '2023-03-23 20:15'
+              - column:
+                  name: duration
+                  value: '01:45:00'
+              - column:
+                  name: status
+                  value: 'BOARDING'
+              - column:
+                  name: airport_id
+                  valueComputed: (SELECT ID FROM airport where code = 'ARN')
+              - column:
+                  name: airplane_id
+                  valueComputed: (SELECT ID FROM airplane where code = 'A320')

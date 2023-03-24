@@ -1,0 +1,57 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+
+  - changeSet:
+      id: 3
+      author: tburzynski
+      changes:
+        - createTable:
+            tableName: flight
+            columns:
+              - column:
+                  name: id
+                  type: serial
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: number
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: departure
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: arrival
+                  type: timestamp with time zone
+                  constraints:
+                    nullable: false
+              - column:
+                  name: duration
+                  type: interval
+                  constraints:
+                    nullable: false
+              - column:
+                  name: status
+                  type: varchar(100)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: airport_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_airport_id
+                    references: airport(id)
+              - column:
+                  name: airplane_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: fk_airplane_id
+                    references: airplane(id)

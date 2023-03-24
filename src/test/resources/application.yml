@@ -1,0 +1,11 @@
+spring:
+  jpa:
+    database: postgresql
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/flight_manager
+    username: postgres
+    password: postgres
+
+
+

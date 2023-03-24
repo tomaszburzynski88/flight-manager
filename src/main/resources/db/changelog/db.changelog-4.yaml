@@ -1,0 +1,83 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+  - changeSet:
+      id: 4
+      author: tburzynski
+      changes:
+        - insert:
+            tableName: airport
+            columns:
+              - column:
+                  name: code
+                  value: WAW
+              - column:
+                  name: name
+                  value: Warsaw Chopin Airport
+              - column:
+                  name: city
+                  value: Warsaw
+              - column:
+                  name: nation
+                  value: Poland
+        - insert:
+            tableName: airport
+            columns:
+              - column:
+                  name: code
+                  value: ZRH
+              - column:
+                  name: name
+                  value: Zurich Airport
+              - column:
+                  name: city
+                  value: Zurich
+              - column:
+                  name: nation
+                  value: SWITZERLAND
+        - insert:
+            tableName: airport
+            columns:
+              - column:
+                  name: code
+                  value: MXP
+              - column:
+                  name: name
+                  value: Milan Malpensa
+              - column:
+                  name: city
+                  value: Milan
+              - column:
+                  name: nation
+                  value: ITALY
+        - insert:
+            tableName: airport
+            columns:
+              - column:
+                  name: code
+                  value: ARN
+              - column:
+                  name: name
+                  value: Stockholm Arlanda Airport
+              - column:
+                  name: city
+                  value: Stockholm
+              - column:
+                  name: nation
+                  value: SWEDEN
+        - insert:
+            tableName: airport
+            columns:
+              - column:
+                  name: code
+                  value: 'CPH'
+              - column:
+                  name: name
+                  value: 'Copenhagen Airport'
+              - column:
+                  name: city
+                  value: 'Copenhagen'
+              - column:
+                  name: nation
+                  value: 'Denmark'

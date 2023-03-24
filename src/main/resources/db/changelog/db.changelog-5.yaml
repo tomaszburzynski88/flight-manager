@@ -1,0 +1,44 @@
+databaseChangeLog:
+  - preConditions:
+      - runningAs:
+          username: postgres
+  - changeSet:
+      id: 5
+      author: tburzynski
+      changes:
+        - insert:
+            tableName: airplane
+            columns:
+              - column:
+                  name: code
+                  value: 'B737'
+              - column:
+                  name: type
+                  value: 'PASSENGER'
+              - column:
+                  name: capacity
+                  value: 149
+        - insert:
+            tableName: airplane
+            columns:
+              - column:
+                  name: code
+                  value: 'A320'
+              - column:
+                  name: type
+                  value: 'PASSENGER'
+              - column:
+                  name: capacity
+                  value: 140
+        - insert:
+            tableName: airplane
+            columns:
+              - column:
+                  name: code
+                  value: 'MD11'
+              - column:
+                  name: type
+                  value: 'CARGO'
+              - column:
+                  name: capacity
+                  value: 89325
